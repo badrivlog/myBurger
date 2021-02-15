@@ -7,3 +7,7 @@ export {
     orderBurgerStart,
     orderFetch
 } from './order';
+
+export {
+    auth
+} from './auth';

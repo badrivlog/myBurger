@@ -109,23 +109,25 @@ class BurgerBuilder extends Component {
 
         if (this.state.loading) {
             orderView = <Spinner />
-        }
-
-        return (
-        <Auxe>
-            <Modal show={this.state.purchasing} modalClose={this.purchaseCancelHandler}>
-                {orderView}
-            </Modal>
-            <Burger ingredients={this.props.ings} />
-           <BuildControls
-           ingredientAdded={(type)=>this.props.onAddIngredient(type)}
-           ingredientRemoved={(id)=>this.props.onIngredientRemove(id)}
-           disabled={disabledInfo}
-           price={this.props.price}
-           purchaseable={this.updatePurchaseState(this.props.ings)}
-           ordered={this.purchaseHandler} />
-        </Auxe>
-        )
+        };
+        let ingredientsLoad = <Spinner />
+        if (this.props.ings)
+            ingredientsLoad = 
+                <Auxe>
+                    <Modal show={this.state.purchasing} modalClose={this.purchaseCancelHandler}>
+                        {orderView}
+                    </Modal>
+                    <Burger ingredients={this.props.ings} />
+                   <BuildControls
+                   ingredientAdded={(type)=>this.props.onAddIngredient(type)}
+                   ingredientRemoved={(id)=>this.props.onIngredientRemove(id)}
+                   disabled={disabledInfo}
+                   price={this.props.price}
+                   purchaseable={this.updatePurchaseState(this.props.ings)}
+                   ordered={this.purchaseHandler} />
+                </Auxe>
+                
+        return ingredientsLoad;
     }
 };
 
